@@ -5,7 +5,7 @@ import type { RequestHandler } from './$types';
 export const GET: RequestHandler = async ({ params }) => {
 	try {
 		const employeeId = parseInt(params.id);
-		
+
 		if (isNaN(employeeId)) {
 			return json({ error: 'Invalid employee ID' }, { status: 400 });
 		}
@@ -30,4 +30,4 @@ export const GET: RequestHandler = async ({ params }) => {
 		console.error('Error fetching employee payments:', error);
 		return json({ error: 'Internal server error' }, { status: 500 });
 	}
-}; 
+};

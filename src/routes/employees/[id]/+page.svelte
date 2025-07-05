@@ -64,7 +64,7 @@
 
 <div class="container mx-auto p-6">
 	{#if loading}
-		<div class="flex justify-center items-center h-64">
+		<div class="flex h-64 items-center justify-center">
 			<span class="loading loading-spinner loading-lg text-primary"></span>
 		</div>
 	{:else if error}
@@ -78,22 +78,20 @@
 		</div>
 	{:else if employee}
 		<!-- Back Link -->
-		<a href="/employees" class="btn btn-sm btn-outline mb-4">
-			← Back to Employees
-		</a>
+		<a href="/employees" class="btn btn-sm btn-outline mb-4"> ← Back to Employees </a>
 
 		<!-- Employee Info -->
-		<div class="card bg-base-100 shadow-md mb-6">
+		<div class="card bg-base-100 mb-6 shadow-md">
 			<div class="card-body">
 				<h2 class="card-title text-2xl">👤 {employee.name}</h2>
-				<div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-2">
+				<div class="mt-2 grid grid-cols-1 gap-4 md:grid-cols-4">
 					<div>
 						<p class="text-sm text-gray-500">Position</p>
 						<p class="font-semibold">{employee.position}</p>
 					</div>
 					<div>
 						<p class="text-sm text-gray-500">Salary</p>
-						<p class="text-green-600 font-semibold">{formatCurrency(employee.salary)}</p>
+						<p class="font-semibold text-green-600">{formatCurrency(employee.salary)}</p>
 					</div>
 					<div>
 						<p class="text-sm text-gray-500">Intmax Address</p>
@@ -108,30 +106,32 @@
 		</div>
 
 		<!-- Payment Summary -->
-		<div class="stats shadow mb-4">
+		<div class="stats mb-4 shadow">
 			<div class="stat">
 				<div class="stat-title">Total Payments</div>
 				<div class="stat-value text-primary">{employee.payments.length}</div>
 			</div>
 			<div class="stat">
 				<div class="stat-title">Total Amount</div>
-				<div class="stat-value text-green-500">{formatCurrency(employee.payments.reduce((s, p) => s + p.amount, 0))}</div>
+				<div class="stat-value text-green-500">
+					{formatCurrency(employee.payments.reduce((s, p) => s + p.amount, 0))}
+				</div>
 			</div>
 		</div>
 
 		<!-- Payment Table -->
 		<div class="card bg-base-100 shadow-md">
 			<div class="card-body">
-				<h2 class="card-title text-xl mb-2">💳 Payment History</h2>
+				<h2 class="card-title mb-2 text-xl">💳 Payment History</h2>
 
 				{#if employee.payments.length === 0}
-					<div class="text-center text-gray-500 py-8">
+					<div class="py-8 text-center text-gray-500">
 						<p class="text-lg">No payments yet</p>
 						<p>This employee hasn't received any payments.</p>
 					</div>
 				{:else}
 					<div class="overflow-x-auto">
-						<table class="table table-zebra w-full">
+						<table class="table-zebra table w-full">
 							<thead>
 								<tr>
 									<th>#</th>
@@ -144,7 +144,7 @@
 								{#each employee.payments as payment}
 									<tr>
 										<td>#{payment.id}</td>
-										<td class="text-green-600 font-medium">{formatCurrency(payment.amount)}</td>
+										<td class="font-medium text-green-600">{formatCurrency(payment.amount)}</td>
 										<td class="font-mono text-sm">{payment.intmax || '-'}</td>
 										<td>{formatDate(payment.paidAt)}</td>
 									</tr>
