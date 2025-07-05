@@ -1,3 +1,6 @@
+![GhostPayroll](./image.png)
+
+
 # 👻 GhostPayroll
 
 > **Privacy-Preserving Payroll Platform powered by [INTMAX](https://intmax.io/)**  
